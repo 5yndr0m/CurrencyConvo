@@ -1,14 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
 import CurrencyConverter from './components/CurrencyConverter';
+import { SafeAreaView } from 'react-native-safe-area-context';
+// import DirectionArrow from './components/DirectionArrow';
 
 export default function App() {
   return (
     <PaperProvider>
       <SafeAreaView style={styles.container}>
-        <CurrencyConverter />
-        <StatusBar style="auto" />
+        <ScrollView>
+          <CurrencyConverter />
+          {/* <DirectionArrow /> */}
+          <StatusBar style="auto" />
+        </ScrollView>
       </SafeAreaView>
     </PaperProvider>
   );
