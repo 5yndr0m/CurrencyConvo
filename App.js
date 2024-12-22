@@ -1,14 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import { PaperProvider } from 'react-native-paper';
+import CurrencyConverter from './components/CurrencyConverter';
 
 export default function App() {
   return (
     <PaperProvider>
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+      <SafeAreaView style={styles.container}>
+        <CurrencyConverter />
         <StatusBar style="auto" />
-      </View>
+      </SafeAreaView>
     </PaperProvider>
   );
 }
@@ -19,5 +20,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 16,
+    paddingTop: 20,
   },
 });
