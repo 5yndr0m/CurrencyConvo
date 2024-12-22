@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
-import CurrencySelector from './CurrencySelector';
+import CurrencySelector from './CurrencySelect';
 
 const CurrencyInput = ({ amount, currency, onAmountChange, onCurrencyChange }) => {
   return (
