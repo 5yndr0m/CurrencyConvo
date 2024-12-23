@@ -80,6 +80,7 @@ const CurrencyConverter = () => {
           setIsFromCurrency(false);
           setPickerVisible(true);
         }}
+      />
     </View>
   );
 };
