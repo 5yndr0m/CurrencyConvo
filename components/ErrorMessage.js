@@ -7,10 +7,7 @@ export default function ErrorMessage({ error, onDismiss }) {
     <Snackbar
       visible={!!error}
       onDismiss={onDismiss}
-      action={onRetry ? {
-        label: 'Retry',
-        onPress: onRetry,
-      } : undefined}
+      duration={Snackbar.DURATION_SHORT}
     >
       {error}
     </Snackbar>
