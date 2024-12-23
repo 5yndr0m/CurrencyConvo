@@ -1,27 +1,33 @@
-import { getApiKey } from '../stores/settingsStore';
+// services/currencyService.js
+const mockRates = {
+  USD: 1.0,
+  EUR: 0.85,
+  GBP: 0.75,
+  INR: 74.0,
+  AUD: 1.3,
+  CAD: 1.25,
+  SGD: 1.35,
+  JPY: 110.0,
+  CNY: 6.45,
+  HKD: 7.8,
+  NZD: 1.4,
+  ZAR: 14.5,
+  BRL: 5.2,
+  RUB: 73.0,
+  MXN: 20.0,
+  SEK: 8.5,
+  NOK: 8.6,
+  DKK: 6.3,
+  CHF: 0.92,
+  LKR: 200.0,
+};
 
-export default async function fetchExchangeRates(baseCurrency = 'USD') {
-  try {
-    
-    const apiKey = await getApiKey();
-    
-    if(!apiKey) {
-      throw new Error('No API key found');
-    }
-    
-    //API key goes here
-    // 
-    const response = await fetch(
-      `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${baseCurrency}`
-    );
-    const data = await response.json();
-    
-    if (response.ok) {
-      return data.conversion_rates;
-    } else {
-      throw new Error(data.error || 'Failed to fetch exchange rates');
-    }
-  } catch (error) {
-    throw new Error('Network error: Could not fetch exchange rates');
-  }
-}
+const fetchExchangeRates = async (baseCurrency) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(mockRates);
+    }, 500);
+  });
+};
+
+export default fetchExchangeRates;
