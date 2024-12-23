@@ -98,3 +98,19 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 - React Native
 - Expo
 - React Native Paper
+
+## Screenshots
+![App Home Screen](./screenshots/Home.jpeg)<br/>
+**Figure 1: Home Screen**
+
+![Currency List](./screenshots/CurrencyList.jpeg)<br/>
+**Figure 2: Currency List**
+
+![Exchange](./screenshots/Exchange.jpeg)<br/>
+**Figure 3: Exchange**
+
+![Swap1](./screenshots/Swap1.jpeg)<br/>
+**Figure 4: Swap 1**
+
+![Swap2](./screenshots/Swap2.jpeg)<br/>
+**Figure 5: Swap 2**
