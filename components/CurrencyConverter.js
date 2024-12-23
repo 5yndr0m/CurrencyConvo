@@ -51,6 +51,15 @@ const CurrencyConverter = () => {
     setToAmount(tempAmount);
   };
 
+  const handleCurrencySelect = (currency) => {
+    if (isFromCurrency) {
+      setFromCurrency(currency);
+    } else {
+      setToCurrency(currency);
+    }
+    setPickerVisible(false);
+  };
+
   return (
     <View style={styles.container}>
       <Title style={styles.title}>Currency Converter</Title>
