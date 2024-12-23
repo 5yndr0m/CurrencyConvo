@@ -1,13 +1,21 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, ScrollView } from 'react-native';
-import { PaperProvider } from 'react-native-paper';
+import { StyleSheet, SafeAreaView } from 'react-native';
+import { Provider as PaperProvider, MD3LightTheme } from 'react-native-paper';
 import CurrencyConverter from './components/CurrencyConverter';
-import { SafeAreaView } from 'react-native-safe-area-context';
-// import DirectionArrow from './components/DirectionArrow';
+
+const theme = {
+  ...MD3LightTheme,
+  colors: {
+    ...MD3LightTheme.colors,
+    primary: '#6750A4',
+    secondary: '#625B71',
+  },
+};
 
 export default function App() {
   return (
-    <PaperProvider>
+    <PaperProvider theme={theme}>
       <SafeAreaView style={styles.container}>
         <ScrollView>
           <CurrencyConverter />
