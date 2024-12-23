@@ -22,6 +22,7 @@ const CurrencyConverter = () => {
       try {
         const rates = await fetchExchangeRates(fromCurrency);
         setExchangeRate(rates[toCurrency]);
+        setError('');
       } catch (err) {
         setError('Failed to fetch exchange rate');
       }
