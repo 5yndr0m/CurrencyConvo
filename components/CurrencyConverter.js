@@ -10,10 +10,12 @@ import ErrorMessage from './ErrorMessage';
 const CurrencyConverter = () => {
   const [fromAmount, setFromAmount] = useState('');
   const [toAmount, setToAmount] = useState('');
-  const [fromCurrency, setFromCurrency] = useState(DEFAULT_FROM_CURRENCY);
-  const [toCurrency, setToCurrency] = useState(DEFAULT_TO_CURRENCY);
+  const [fromCurrency, setFromCurrency] = useState('USD');
+  const [toCurrency, setToCurrency] = useState('LKR');
   const [exchangeRate, setExchangeRate] = useState(null);
   const [error, setError] = useState('');
+  const [pickerVisible, setPickerVisible] = useState(false);
+  const [isFromCurrency, setIsFromCurrency] = useState(true);
 
   useEffect(() => {
     const getExchangeRate = async () => {
