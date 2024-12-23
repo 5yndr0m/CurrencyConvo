@@ -16,6 +16,9 @@ export default function CurrencyInput({ amount, currency, onAmountChange, onCurr
         keyboardType="numeric"
         style={styles.input}
       />
+      <Button mode="outlined" onPress={onCurrencyChange}>
+        {currency}
+      </Button>
     </View>
   );
 }
