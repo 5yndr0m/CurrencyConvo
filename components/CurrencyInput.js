@@ -1,11 +1,9 @@
 // components/CurrencyInput.js
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Button, TextInput } from 'react-native-paper';
-import { CURRENCIES } from '../constants/currencies';
+import { TextInput, Button } from 'react-native-paper';
 
-export default function CurrencyInput({ amount, currency, onAmountChange, onCurrencyChange, disabled }) {
-  const currencyList = Object.keys(CURRENCIES);
+export default function CurrencyInput({ amount, currency, onAmountChange, onCurrencyChange }) {
 
   return (
     <View style={styles.container}>
