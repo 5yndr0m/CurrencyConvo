@@ -26,13 +26,11 @@ export default function CurrencyInput({ amount, currency, onAmountChange, onCurr
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    gap: 8,
     alignItems: 'center',
-  },
-  button: {
-    flex: 1,
+    marginBottom: 16,
   },
   input: {
-    flex: 2,
+    flex: 1,
+    marginRight: 8,
   },
 });
