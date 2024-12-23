@@ -14,24 +14,15 @@ const theme = {
 };
 
 export default function App() {
-  const [showSettings, setShowSettings] = useState(false);
 
   return (
     <PaperProvider theme={theme}>
       <SafeAreaView style={styles.container}>
-        {showSettings ? (
-          <Settings onBack={() => setShowSettings(false)} />
-        ) : (
-          <>
-            <CurrencyConverter />
-            <Button title="Settings" onPress={() => setShowSettings(true)} />
-          </>
-        )}
-        <StatusBar style="auto" />
+        <CurrencyConverter />
       </SafeAreaView>
     </PaperProvider>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
