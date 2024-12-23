@@ -1,10 +1,8 @@
 // App.js
-import React, { useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, SafeAreaView, Button } from 'react-native';
+import React from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import { Provider as PaperProvider, MD3LightTheme } from 'react-native-paper';
 import CurrencyConverter from './components/CurrencyConverter';
-import Settings from './components/Settings';
 
 const theme = {
   ...MD3LightTheme,
