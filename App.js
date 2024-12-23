@@ -17,11 +17,8 @@ export default function App() {
   return (
     <PaperProvider theme={theme}>
       <SafeAreaView style={styles.container}>
-        <ScrollView>
-          <CurrencyConverter />
-          {/* <DirectionArrow /> */}
-          <StatusBar style="auto" />
-        </ScrollView>
+        <CurrencyConverter />
+        <StatusBar style="auto" />
       </SafeAreaView>
     </PaperProvider>
   );
