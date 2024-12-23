@@ -72,6 +72,14 @@ const CurrencyConverter = () => {
           setPickerVisible(true);
         }}
       />
+      <CurrencyInput
+        amount={toAmount}
+        currency={toCurrency}
+        onAmountChange={handleToAmountChange}
+        onCurrencyChange={() => {
+          setIsFromCurrency(false);
+          setPickerVisible(true);
+        }}
     </View>
   );
 };
