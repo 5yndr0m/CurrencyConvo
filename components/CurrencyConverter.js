@@ -63,6 +63,15 @@ const CurrencyConverter = () => {
   return (
     <View style={styles.container}>
       <Title style={styles.title}>Currency Converter</Title>
+      <CurrencyInput
+        amount={fromAmount}
+        currency={fromCurrency}
+        onAmountChange={handleFromAmountChange}
+        onCurrencyChange={() => {
+          setIsFromCurrency(true);
+          setPickerVisible(true);
+        }}
+      />
     </View>
   );
 };
