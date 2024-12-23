@@ -97,27 +97,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
-    backgroundColor: '#fff',
   },
   title: {
     fontSize: 24,
     marginBottom: 20,
-  },
-  converterContainer: {
-    width: '100%',
-    alignItems: 'center',
-    gap: 20,
-  },
-  input: {
-    width: '80%',
-    marginBottom: 20,
-  },
-  currency: {
-    marginBottom: 20,
-    fontSize: 18,
-  },
-  error: {
-    color: 'red',
   },
 });
 
