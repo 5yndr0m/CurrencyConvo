@@ -72,6 +72,9 @@ const CurrencyConverter = () => {
           setPickerVisible(true);
         }}
       />
+      <Button mode="contained" onPress={handleDirectionChange}>
+        Swap
+      </Button>
       <CurrencyInput
         amount={toAmount}
         currency={toCurrency}
