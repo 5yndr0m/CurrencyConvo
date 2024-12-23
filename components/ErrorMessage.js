@@ -2,7 +2,7 @@
 import React from 'react';
 import { Snackbar } from 'react-native-paper';
 
-export default function ErrorMessage({ error, onDismiss, onRetry }) {
+export default function ErrorMessage({ error, onDismiss }) {
   return (
     <Snackbar
       visible={!!error}
