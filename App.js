@@ -1,9 +1,10 @@
 // App.js
-import React from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet, SafeAreaView, Button } from 'react-native';
 import { Provider as PaperProvider, MD3LightTheme } from 'react-native-paper';
 import CurrencyConverter from './components/CurrencyConverter';
+import Settings from './components/Settings';
 
 const theme = {
   ...MD3LightTheme,
@@ -15,10 +16,19 @@ const theme = {
 };
 
 export default function App() {
+  const [showSettings, setShowSettings] = useState(false);
+
   return (
     <PaperProvider theme={theme}>
       <SafeAreaView style={styles.container}>
-        <CurrencyConverter />
+        {showSettings ? (
+          <Settings onBack={() => setShowSettings(false)} />
+        ) : (
+          <>
+            <CurrencyConverter />
+            <Button title="Settings" onPress={() => setShowSettings(true)} />
+          </>
+        )}
         <StatusBar style="auto" />
       </SafeAreaView>
     </PaperProvider>
