@@ -89,6 +89,26 @@ CurrencyConverterApp/
 
 - Use the "Swap" button to swap between the base and target currencies.
 
+## Screenshots
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <img src="./screenshots/Home.jpeg" alt="App Home Screen" width="300"/>
+  <img src="./screenshots/CurrencyList.jpeg" alt="Currency List" width="300"/>
+  <img src="./screenshots/Exchange.jpeg" alt="Exchange" width="300"/>
+  <img src="./screenshots/Swap1.jpeg" alt="Swap 1" width="300"/>
+  <img src="./screenshots/Swap2.jpeg" alt="Swap 2" width="300"/>
+</div>
+
+- **Figure 1**: Home Screen
+- **Figure 2**: Currency List
+- **Figure 3**: Exchange
+- **Figure 4**: Swap 1
+- **Figure 5**: Swap 2
+
+## License
+
+This project is licensed under the MIT License.
+
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for any changes.
@@ -98,19 +118,3 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 - React Native
 - Expo
 - React Native Paper
-
-## Screenshots
-![App Home Screen](./screenshots/Home.jpeg)<br/>
-**Figure 1: Home Screen**
-
-![Currency List](./screenshots/CurrencyList.jpeg)<br/>
-**Figure 2: Currency List**
-
-![Exchange](./screenshots/Exchange.jpeg)<br/>
-**Figure 3: Exchange**
-
-![Swap1](./screenshots/Swap1.jpeg)<br/>
-**Figure 4: Swap 1**
-
-![Swap2](./screenshots/Swap2.jpeg)<br/>
-**Figure 5: Swap 2**
