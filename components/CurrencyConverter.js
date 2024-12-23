@@ -24,7 +24,7 @@ const CurrencyConverter = () => {
         setExchangeRate(rates[toCurrency]);
         setError('');
       } catch (err) {
-        setError('Failed to fetch exchange rate');
+        setError('Failed to fetch exchange rates');
       }
     };
     getExchangeRate();
