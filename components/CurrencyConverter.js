@@ -1,88 +1,75 @@
-import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Title } from 'react-native-paper';
-import CurrencyInput from './CurrencyInput';
-import DirectionArrow from './DirectionArrow';
+// components/CurrencyConverter.js
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { Button, Divider } from 'react-native-paper';
 
 const CurrencyConverter = () => {
-  
-  const [fromAmount, setFromAmount] = useState('');
-  const [toAmount, setToAmount] = useState('');
-  const [fromCurrency, setFromCurrency] = useState('USD');
-  const [toCurrency, setToCurrency] = useState('EUR');
-  const [isReversed, setIsReversed] = useState(false);
- 
-  // Mock conversion rates
-  const rates = {
-    USD: { EUR: 0.85, GBP: 0.73 },
-    EUR: { USD: 1.18, GBP: 0.86 },
-    GBP: { USD: 1.37, EUR: 1.16 }
+  const [amount, setAmount] = useState('');
+  const [convertedAmount, setConvertedAmount] = useState(null);
+  const [error, setError] = useState('');
+
+  const convertCurrency = async () => {
+    try {
+      const response = await fetch(`https://api.exchangerate-api.com/v4/latest/USD`);
+      const data = await response.json();
+      const rate = data.rates.EUR; // Change EUR to the target currency
+      setConvertedAmount((amount * rate).toFixed(2));
+      setError('');
+    } catch (err) {
+      setError('Failed to fetch exchange rate');
+    }
   };
- 
-  const handleFromAmountChange = (value) => {
-    setFromAmount(value);
-    const numericValue = parseFloat(value) || 0;
-    const rate = isReversed ? rates[toCurrency][fromCurrency] : rates[fromCurrency][toCurrency];
-    setToAmount((numericValue * rate).toFixed(2));
-  };
- 
-  const handleToAmountChange = (value) => {
-    setToAmount(value);
-    const numericValue = parseFloat(value) || 0;
-    const rate = isReversed ? rates[toCurrency][fromCurrency] : rates[fromCurrency][toCurrency];
-    setFromAmount((numericValue / rate).toFixed(2));
-  };
- 
-  const handleDirectionChange = () => {
-    setIsReversed(!isReversed);
-    const tempCurrency = fromCurrency;
-    setFromCurrency(toCurrency);
-    setToCurrency(tempCurrency);
-     
-    const tempAmount = fromAmount;
-    setFromAmount(toAmount);
-    setToAmount(tempAmount);
-  };
-   
+
   return (
     <View style={styles.container}>
-          <Title style={styles.title}>Currency Converter</Title>
-          
-          <View style={styles.converterContainer}>
-            <CurrencyInput
-              amount={fromAmount}
-              currency={fromCurrency}
-              onAmountChange={handleFromAmountChange}
-              onCurrencyChange={setFromCurrency}
-            />
-    
-            <DirectionArrow 
-              isReversed={isReversed}
-              onPress={handleDirectionChange}
-            />
-    
-            <CurrencyInput
-              amount={toAmount}
-              currency={toCurrency}
-              onAmountChange={handleToAmountChange}
-              onCurrencyChange={setToCurrency}
-            />
-          </View>
-        </View>
+      <Text style={styles.title}>Currency Converter</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Enter amount in USD"
+        keyboardType="numeric"
+        value={amount}
+        onChangeText={setAmount}
+      />
+      <Button mode="contained" onPress={convertCurrency}>
+        Convert to EUR
+      </Button>
+      <Divider style={styles.divider} />
+      {convertedAmount !== null && (
+        <Text style={styles.result}>Converted Amount: EUR {convertedAmount}</Text>
+      )}
+      {error ? <Text style={styles.error}>{error}</Text> : null}
+    </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
   },
   title: {
-    textAlign: 'center',
-    marginBottom: 40,
+    fontSize: 24,
+    marginBottom: 20,
   },
-  converterContainer: {
-    alignItems: 'center',
-    gap: 20,
+  input: {
+    width: '80%',
+    padding: 10,
+    marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+  },
+  divider: {
+    marginVertical: 20,
+    width: '80%',
+  },
+  result: {
+    fontSize: 18,
+    marginBottom: 20,
+  },
+  error: {
+    color: 'red',
   },
 });
 

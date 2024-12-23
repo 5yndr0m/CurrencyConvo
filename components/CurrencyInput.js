@@ -1,35 +1,46 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { TextInput } from 'react-native-paper';
-import CurrencySelector from './CurrencySelect';
+import { View, StyleSheet } from 'react-native';
+import { Button, TextInput } from 'react-native-paper';
 
-const CurrencyInput = ({ amount, currency, onAmountChange, onCurrencyChange }) => {
+const CURRENCIES = ['USD', 'EUR', 'GBP', 'JPY', 'AUD', 'CAD', 'LKR'];
+
+export default function CurrencyInput({ amount, currency, onAmountChange, onCurrencyChange, disabled }) {
   return (
     <View style={styles.container}>
-      <CurrencySelector 
-        selectedCurrency={currency}
-        onCurrencyChange={onCurrencyChange}
-      />
-      <TextInput 
+      <Button
+        mode="outlined"
+        onPress={() => {
+          const currentIndex = CURRENCIES.indexOf(currency);
+          const nextIndex = (currentIndex + 1) % CURRENCIES.length;
+          onCurrencyChange(CURRENCIES[nextIndex]);
+        }}
+        style={styles.button}
+      >
+        {currency}
+      </Button>
+
+      <TextInput
         mode="outlined"
         value={amount}
         onChangeText={onAmountChange}
         keyboardType="numeric"
         style={styles.input}
-        placeholder="0.00"
+        disabled={disabled}
       />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    flexDirection: 'row',
     gap: 8,
+    alignItems: 'center',
+  },
+  button: {
+    flex: 1,
   },
   input: {
-    backgroundColor: '#fff',
+    flex: 2,
   },
 });
-
-export default CurrencyInput;
