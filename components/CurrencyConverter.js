@@ -1,9 +1,11 @@
 // components/CurrencyConverter.js
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Title, Button, Divider, Text, TextInput } from 'react-native-paper';
+import { Title, Button } from 'react-native-paper';
 import fetchExchangeRates from '../services/currencyService';
-import { DEFAULT_FROM_CURRENCY, DEFAULT_TO_CURRENCY } from '../constants/currencies';
+import CurrencyInput from './CurrencyInput';
+import CurrencyPicker from './CurrencyPicker';
+import ErrorMessage from './ErrorMessage';
 
 const CurrencyConverter = () => {
   const [fromAmount, setFromAmount] = useState('');
