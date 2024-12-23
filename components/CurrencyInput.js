@@ -1,18 +1,20 @@
+// components/CurrencyInput.js
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
-
-const CURRENCIES = ['USD', 'EUR', 'GBP', 'JPY', 'AUD', 'CAD', 'LKR'];
+import { CURRENCIES } from '../constants/currencies';
 
 export default function CurrencyInput({ amount, currency, onAmountChange, onCurrencyChange, disabled }) {
+  const currencyList = Object.keys(CURRENCIES);
+
   return (
     <View style={styles.container}>
       <Button
         mode="outlined"
         onPress={() => {
-          const currentIndex = CURRENCIES.indexOf(currency);
-          const nextIndex = (currentIndex + 1) % CURRENCIES.length;
-          onCurrencyChange(CURRENCIES[nextIndex]);
+          const currentIndex = currencyList.indexOf(currency);
+          const nextIndex = (currentIndex + 1) % currencyList.length;
+          onCurrencyChange(currencyList[nextIndex]);
         }}
         style={styles.button}
       >

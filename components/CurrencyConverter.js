@@ -1,42 +1,78 @@
 // components/CurrencyConverter.js
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
-import { Button, Divider } from 'react-native-paper';
+import { View, StyleSheet } from 'react-native';
+import { Title, Button, Divider, Text, TextInput } from 'react-native-paper';
+import fetchExchangeRates from '../services/currencyService';
+import { DEFAULT_FROM_CURRENCY, DEFAULT_TO_CURRENCY } from '../constants/currencies';
 
 const CurrencyConverter = () => {
-  const [amount, setAmount] = useState('');
-  const [convertedAmount, setConvertedAmount] = useState(null);
+  const [fromAmount, setFromAmount] = useState('');
+  const [toAmount, setToAmount] = useState('');
+  const [fromCurrency, setFromCurrency] = useState(DEFAULT_FROM_CURRENCY);
+  const [toCurrency, setToCurrency] = useState(DEFAULT_TO_CURRENCY);
+  const [exchangeRate, setExchangeRate] = useState(null);
   const [error, setError] = useState('');
 
-  const convertCurrency = async () => {
-    try {
-      const response = await fetch(`https://api.exchangerate-api.com/v4/latest/USD`);
-      const data = await response.json();
-      const rate = data.rates.EUR; // Change EUR to the target currency
-      setConvertedAmount((amount * rate).toFixed(2));
-      setError('');
-    } catch (err) {
-      setError('Failed to fetch exchange rate');
-    }
+  useEffect(() => {
+    const getExchangeRate = async () => {
+      try {
+        const rates = await fetchExchangeRates(fromCurrency);
+        setExchangeRate(rates[toCurrency]);
+      } catch (err) {
+        setError('Failed to fetch exchange rate');
+      }
+    };
+    getExchangeRate();
+  }, [fromCurrency, toCurrency]);
+
+  const handleFromAmountChange = (value) => {
+    setFromAmount(value);
+    const numericValue = parseFloat(value) || 0;
+    setToAmount((numericValue * exchangeRate).toFixed(2));
+  };
+
+  const handleToAmountChange = (value) => {
+    setToAmount(value);
+    const numericValue = parseFloat(value) || 0;
+    setFromAmount((numericValue / exchangeRate).toFixed(2));
+  };
+
+  const handleDirectionChange = () => {
+    const tempCurrency = fromCurrency;
+    setFromCurrency(toCurrency);
+    setToCurrency(tempCurrency);
+
+    const tempAmount = fromAmount;
+    setFromAmount(toAmount);
+    setToAmount(tempAmount);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Currency Converter</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Enter amount in USD"
-        keyboardType="numeric"
-        value={amount}
-        onChangeText={setAmount}
-      />
-      <Button mode="contained" onPress={convertCurrency}>
-        Convert to EUR
-      </Button>
-      <Divider style={styles.divider} />
-      {convertedAmount !== null && (
-        <Text style={styles.result}>Converted Amount: EUR {convertedAmount}</Text>
-      )}
+      <Title style={styles.title}>Currency Converter</Title>
+      <View style={styles.converterContainer}>
+        <TextInput
+          mode="outlined"
+          label="Amount"
+          value={fromAmount}
+          onChangeText={handleFromAmountChange}
+          keyboardType="numeric"
+          style={styles.input}
+        />
+        <Text style={styles.currency}>{fromCurrency}</Text>
+        <Button mode="contained" onPress={handleDirectionChange}>
+          Swap
+        </Button>
+        <TextInput
+          mode="outlined"
+          label="Converted Amount"
+          value={toAmount}
+          onChangeText={handleToAmountChange}
+          keyboardType="numeric"
+          style={styles.input}
+        />
+        <Text style={styles.currency}>{toCurrency}</Text>
+      </View>
       {error ? <Text style={styles.error}>{error}</Text> : null}
     </View>
   );
@@ -44,29 +80,28 @@ const CurrencyConverter = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+    backgroundColor: '#fff',
   },
   title: {
     fontSize: 24,
     marginBottom: 20,
   },
+  converterContainer: {
+    width: '100%',
+    alignItems: 'center',
+    gap: 20,
+  },
   input: {
     width: '80%',
-    padding: 10,
     marginBottom: 20,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
   },
-  divider: {
-    marginVertical: 20,
-    width: '80%',
-  },
-  result: {
+  currency: {
+    marginBottom: 20,
     fontSize: 18,
-    marginBottom: 20,
   },
   error: {
     color: 'red',

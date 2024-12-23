@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+// components/Settings.js
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Button, Card, IconButton, TextInput, Title } from 'react-native-paper';
-import { setApiKey } from '../stores/settingsStore';
+import { setApiKey, getApiKey } from '../stores/settingsStore';
 import ErrorMessage from './ErrorMessage';
 
 export default function Settings({ onBack }) {
   const [key, setKey] = useState('');
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchApiKey = async () => {
+      const apiKey = await getApiKey();
+      if (apiKey) setKey(apiKey);
+    };
+    fetchApiKey();
+  }, []);
 
   const handleSave = async () => {
     try {
@@ -50,7 +59,7 @@ export default function Settings({ onBack }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+  
   },
   header: {
     flexDirection: 'row',
