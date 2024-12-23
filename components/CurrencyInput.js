@@ -7,17 +7,6 @@ export default function CurrencyInput({ amount, currency, onAmountChange, onCurr
 
   return (
     <View style={styles.container}>
-      <Button
-        mode="outlined"
-        onPress={() => {
-          const currentIndex = currencyList.indexOf(currency);
-          const nextIndex = (currentIndex + 1) % currencyList.length;
-          onCurrencyChange(currencyList[nextIndex]);
-        }}
-        style={styles.button}
-      >
-        {currency}
-      </Button>
 
       <TextInput
         mode="outlined"
