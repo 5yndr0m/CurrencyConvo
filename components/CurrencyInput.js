@@ -10,11 +10,11 @@ export default function CurrencyInput({ amount, currency, onAmountChange, onCurr
 
       <TextInput
         mode="outlined"
+        label="Amount"
         value={amount}
         onChangeText={onAmountChange}
         keyboardType="numeric"
         style={styles.input}
-        disabled={disabled}
       />
     </View>
   );
