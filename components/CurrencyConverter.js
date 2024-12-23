@@ -63,30 +63,6 @@ const CurrencyConverter = () => {
   return (
     <View style={styles.container}>
       <Title style={styles.title}>Currency Converter</Title>
-      <View style={styles.converterContainer}>
-        <TextInput
-          mode="outlined"
-          label="Amount"
-          value={fromAmount}
-          onChangeText={handleFromAmountChange}
-          keyboardType="numeric"
-          style={styles.input}
-        />
-        <Text style={styles.currency}>{fromCurrency}</Text>
-        <Button mode="contained" onPress={handleDirectionChange}>
-          Swap
-        </Button>
-        <TextInput
-          mode="outlined"
-          label="Converted Amount"
-          value={toAmount}
-          onChangeText={handleToAmountChange}
-          keyboardType="numeric"
-          style={styles.input}
-        />
-        <Text style={styles.currency}>{toCurrency}</Text>
-      </View>
-      {error ? <Text style={styles.error}>{error}</Text> : null}
     </View>
   );
 };
