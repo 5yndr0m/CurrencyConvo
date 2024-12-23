@@ -81,6 +81,7 @@ const CurrencyConverter = () => {
           setPickerVisible(true);
         }}
       />
+      {error ? <ErrorMessage error={error} onDismiss={() => setError('')} /> : null}
     </View>
   );
 };
