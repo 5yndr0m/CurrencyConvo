@@ -10,7 +10,18 @@ const currencies = [
 
 const CurrencyPicker = ({ visible, onDismiss, onSelect }) => {
   return (
+    <Menu
+      visible={visible}
+      onDismiss={onDismiss}
+      anchor={<Button onPress={onDismiss}>Select Currency</Button>}
+    >
+      {currencies.map((currency) => (
+        <Menu.Item key={currency} onPress={() => onSelect(currency)} title={currency} />
+      ))}
+    </Menu>
   );
 };
+
 const styles = StyleSheet.create({});
+
 export default CurrencyPicker;
